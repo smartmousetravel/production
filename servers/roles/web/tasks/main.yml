@@ -143,6 +143,7 @@
     mode: 'u=rw,g=r,o='
   with_items:
     - 'prometheus.yml'
+    - 'node.rules'
 
 - name: Install smartmouse-web systemd unit
   copy:

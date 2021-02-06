@@ -1,0 +1,8 @@
+# -*- mode: yaml -*-
+groups:
+  - name: node_fs
+    rules:
+      - record: node:filesystem_avail_bytes
+        expr: node_filesystem_avail_bytes
+      - record: node:filesystem_avail:fraction
+        expr: node_filesystem_avail_bytes / node_filesystem_size_bytes
