@@ -1,0 +1,159 @@
+##############################
+# Configure attached disks for WordPress
+##############################
+
+- name: Make WordPress DB directory
+  file:
+    path: '{{ disk_db_dir }}'
+    state: directory
+    owner: '{{ mysql_uid }}'
+    group: '{{ mysql_gid }}'
+    mode: 'u=rwx,g=rx,o='
+
+- name: Format WordPress DB disk
+  filesystem:
+    fstype: ext4
+    dev: '/dev/disk/by-id/{{ disk_db_id }}'
+  when: is_gce and has_separate_disks
+
+- name: Mount WordPress DB disk
+  mount:
+    src: '/dev/disk/by-id/{{ disk_db_id }}'
+    path: '{{ disk_db_dir }}'
+    fstype: ext4
+    passno: '2'
+    state: mounted
+  when: is_gce and has_separate_disks
+
+- name: Make WordPress content directory
+  file:
+    path: '{{ disk_content_dir }}'
+    state: directory
+    owner: 'www-data'
+    group: 'www-data'
+    mode: 'u=rwx,g=rx,o='
+
+- name: Format WordPress content disk
+  filesystem:
+    fstype: ext4
+    dev: '/dev/disk/by-id/{{ disk_content_id }}'
+  when: is_gce and has_separate_disks
+
+- name: Mount WordPress content disk
+  mount:
+    src: '/dev/disk/by-id/{{ disk_content_id }}'
+    path: '{{ disk_content_dir }}'
+    fstype: ext4
+    passno: '2'
+    state: mounted
+  when: is_gce and has_separate_disks
+
+##############################
+# Configure letsencrypt support
+##############################
+
+- name: Make directory for crypto material
+  file:
+    path: /tls
+    state: directory
+    owner: root
+    group: www-data
+    mode: '2750'
+
+- name: Install letsencrypt renewal script
+  copy:
+    src: letsencrypt/gencerts
+    dest: /usr/local/sbin
+    mode: '750'
+
+- name: Install letsencrypt renewal script systemd service
+  copy:
+    src: letsencrypt/gencerts.service
+    dest: /etc/systemd/system
+    mode: '644'
+  notify:
+    - 'enable letsencrypt gencerts'
+
+- name: Install letsencrypt renewal script systemd timer
+  copy:
+    src: letsencrypt/gencerts.timer
+    dest: /etc/systemd/system
+    mode: '644'
+  notify:
+    - 'enable letsencrypt gencerts timer'
+
+##############################
+# Add service config stuff
+##############################
+
+- name: Create config directories
+  file:
+    path: '/config/{{ item.name }}'
+    state: directory
+    owner: root
+    group: '{{ item.group }}'
+    mode: '{{ item.mode }}'
+  with_items:
+    - { name: 'docker', group: 'root', mode: 'u=rwx,g=,o=' }
+
+- name: Create monitoring state directory
+  file:
+    path: '/prometheus'
+    state: directory
+    owner: 'nobody'
+    group: 'nogroup'
+    mode: 'u=rwx,g=,o='
+
+- name: Generate docker-compose config
+  template:
+    src: 'docker-compose.yml'
+    dest: '/config/docker/docker-compose.yml'
+    owner: 'root'
+    group: 'root'
+  notify: ['restart smartmouse-web']
+
+- name: Install nginx
+  apt:
+    pkg: ['nginx']
+    state: present
+
+- name: Install nginx config
+  template:
+    src: 'nginx-smt-www.conf'
+    dest: '/etc/nginx/conf.d/smt-www.conf'
+    owner: 'root'
+    group: 'root'
+    mode: 'u=rw,g=r'
+  notify: ['reload nginx']
+
+- name: Create monitoring config directory
+  file:
+    path: '/config/prometheus'
+    state: directory
+    owner: 'root'
+    group: 'nogroup'
+    mode: 'u=rwx,g=rx,o='
+
+- name: Install monitoring config files
+  copy:
+    src: 'prometheus/{{ item }}'
+    dest: '/config/prometheus/'
+    owner: 'root'
+    group: 'nogroup'
+    mode: 'u=rw,g=r,o='
+  with_items:
+    - 'prometheus.yml'
+
+- name: Install smartmouse-web systemd unit
+  copy:
+    src: 'smartmouse-web.service'
+    dest: '/etc/systemd/system/'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: smartmouse_register_systemd_service
+
+- name: Reload systemd daemon
+  command: 'systemctl daemon-reload'
+  when: ((smartmouse_register_systemd_service) and
+         (smartmouse_register_systemd_service is changed))

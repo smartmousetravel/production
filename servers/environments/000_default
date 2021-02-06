@@ -1,0 +1,6 @@
+env: 'dev'
+has_separate_disks: false
+is_gce: false
+
+mysql_uid: '999'
+mysql_gid: '999'

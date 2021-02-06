@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    volumes:
+      - {{ disk_db_dir }}:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD={{ wordpress_db_password }}
+    networks:
+      private:
+        ipv4_address: 10.6.0.3
+
+  wordpress:
+    image: wordpress:5
+    container_name: wordpress
+    logging:
+      driver: none
+    volumes:
+      - {{ disk_content_dir }}:/var/www/html
+    depends_on:
+      - mariadb
+    environment:
+      - VIRTUAL_HOST=smartmousetravel.com,www.smartmousetravel.com,www-prod-1.smartmousetravel.com
+      - WORDPRESS_DB_HOST=10.6.0.3
+      - WORDPRESS_DB_PASSWORD={{ wordpress_db_password }}
+    networks:
+      private:
+        ipv4_address: 10.6.0.4
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    network_mode: host
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention=90d'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    volumes:
+      - /config/prometheus:/etc/prometheus
+      - /prometheus:/prometheus
+
+networks:
+  private:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.6.0.0/16

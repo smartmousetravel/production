@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+# TODO: Clean this up (build, container, test, etc)
+CERTBOT_VERSION=v1.12.0
+
+hosts=(prometheus.smartmousetravel.com
+       www-prod-1.smartmousetravel.com)
+
+for host in ${hosts[@]}; do
+  docker run --rm                                 \
+     -v /tls/letsencrypt:/etc/letsencrypt         \
+     -v /var/www/html:/webroot                    \
+     certbot/certbot:"$CERTBOT_VERSION" certonly  \
+     --non-interactive                            \
+     --agree-tos                                  \
+     --email lucas@smartmousetravel.com           \
+     --keep-until-expiring                        \
+     --webroot                                    \
+     --webroot-path /webroot                      \
+     --domain ${host}
+done

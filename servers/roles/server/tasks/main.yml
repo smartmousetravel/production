@@ -1,0 +1,28 @@
+- name: Infer full host name
+  set_fact:
+    my_hostname: '{{ inventory_hostname }}'
+  tags:
+    - setup
+
+- debug:
+    msg: 'inferred host name: {{ my_hostname }}'
+
+- name: Write hostname file
+  template:
+    src: 'hostname.j2'
+    dest: '/etc/hostname'
+    mode: '0644'
+  notify: hostname
+
+- name: Install base packages
+  apt:
+    pkg:
+      - 'apt-transport-https'
+      - 'ca-certificates'
+      - 'curl'
+      - 'gnupg-agent'
+      - 'prometheus-node-exporter'
+      - 'software-properties-common'
+      - 'ssl-cert'
+    update_cache: yes
+    state: present
