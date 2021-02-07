@@ -13,3 +13,14 @@ groups:
         expr: rate(node_cpu_seconds_total{mode!="idle"}[1m])
       - record: node:cpu:rate5m
         expr: rate(node_cpu_seconds_total{mode!="idle"}[5m])
+
+  - name: node_net
+    rules:
+      - record: node:receive_bytes
+        expr: node_network_receive_bytes_total{device=~"^(en|eth|ens).*"}
+      - record: node:transmit_bytes
+        expr: node_network_transmit_bytes_total{device=~"^(en|eth|ens).*"}
+      - record: node:receive_bytes:rate5m
+        expr: rate(node:receive_bytes[5m])
+      - record: node:transmit_bytes:rate5m
+        expr: rate(node:transmit_bytes[5m])
