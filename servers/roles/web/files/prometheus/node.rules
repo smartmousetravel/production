@@ -6,3 +6,10 @@ groups:
         expr: node_filesystem_avail_bytes
       - record: node:filesystem_avail:fraction
         expr: node_filesystem_avail_bytes / node_filesystem_size_bytes
+
+  - name: node_cpu
+    rules:
+      - record: node:cpu:rate1m
+        expr: rate(node_cpu_seconds_total{mode!="idle"}[1m])
+      - record: node:cpu:rate5m
+        expr: rate(node_cpu_seconds_total{mode!="idle"}[5m])
