@@ -4,7 +4,8 @@ set -e
 # TODO: Clean this up (build, container, test, etc)
 CERTBOT_VERSION=v1.12.0
 
-hosts=(prometheus.smartmousetravel.com
+hosts=(smartmousetravel.com
+       prometheus.smartmousetravel.com
        www-prod-1.smartmousetravel.com)
 
 for host in ${hosts[@]}; do
