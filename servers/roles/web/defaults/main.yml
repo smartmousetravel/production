@@ -1,2 +1,8 @@
+has_separate_disks: false
+is_gce: false
+
+mysql_uid: '999'
+mysql_gid: '999'
+
 disk_db_dir: '/db'
 disk_content_dir: '/wordpress'
