@@ -61,13 +61,13 @@
     mode: '2750'
 
 - name: Install letsencrypt renewal script
-  copy:
+  template:
     src: letsencrypt/gencerts
     dest: /usr/local/sbin
     mode: '750'
 
 - name: Install letsencrypt renewal script systemd service
-  copy:
+  template:
     src: letsencrypt/gencerts.service
     dest: /etc/systemd/system
     mode: '644'
@@ -75,7 +75,7 @@
     - 'enable letsencrypt gencerts'
 
 - name: Install letsencrypt renewal script systemd timer
-  copy:
+  template:
     src: letsencrypt/gencerts.timer
     dest: /etc/systemd/system
     mode: '644'

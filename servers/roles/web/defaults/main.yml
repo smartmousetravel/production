@@ -1,9 +1,13 @@
-has_separate_disks: false
+virtual_host: '{{ my_hostname }}'
+extra_virtual_hosts: []
+extra_tls_hosts: []
+
 is_gce: false
 
 mysql_uid: '999'
 mysql_gid: '999'
 
+has_separate_disks: false
 disk_db_dir: '/db'
 disk_content_dir: '/wordpress'
 

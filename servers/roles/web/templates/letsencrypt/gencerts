@@ -4,9 +4,7 @@ set -e
 # TODO: Clean this up (build, container, test, etc)
 CERTBOT_VERSION=v1.12.0
 
-hosts=(smartmousetravel.com
-       prometheus.smartmousetravel.com
-       www-prod-1.smartmousetravel.com)
+hosts=({{ virtual_host }}{{ ' ' if extra_tls_hosts else '' }}{{ extra_tls_hosts|join(' ') }})
 
 for host in ${hosts[@]}; do
   docker run --rm                                 \

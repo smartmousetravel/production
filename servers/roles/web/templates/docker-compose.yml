@@ -24,7 +24,7 @@ services:
     depends_on:
       - mariadb
     environment:
-      - VIRTUAL_HOST=smartmousetravel.com,www.smartmousetravel.com,www-prod-1.smartmousetravel.com
+      - VIRTUAL_HOST={{ extra_virtual_hosts|join(',') }}{{ ',' if extra_virtual_hosts else '' }}{{ virtual_host }}
       - WORDPRESS_DB_HOST=10.6.0.3
       - WORDPRESS_DB_PASSWORD={{ wordpress_db_password }}
     networks:
