@@ -135,7 +135,7 @@
     mode: 'u=rwx,g=rx,o='
 
 - name: Install monitoring config files
-  copy:
+  template:
     src: 'prometheus/{{ item }}'
     dest: '/config/prometheus/'
     owner: 'root'

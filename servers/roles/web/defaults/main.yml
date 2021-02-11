@@ -6,3 +6,5 @@ mysql_gid: '999'
 
 disk_db_dir: '/db'
 disk_content_dir: '/wordpress'
+
+prometheus_host_label: '{{ ansible_hostname }}'

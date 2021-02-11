@@ -4,8 +4,7 @@ global:
   scrape_timeout:      5s
 
   external_labels:
-    # TODO: Factor out this label
-    monitor: 'www-prod-1'
+    monitor: '{{ prometheus_host_label }}'
 
 rule_files:
   - 'node.rules'
@@ -16,11 +15,11 @@ scrape_configs:
       - targets:
           - '127.0.0.1:9323'
         labels:
-          host: 'www-prod-1'
+          host: '{{ prometheus_host_label }}'
 
   - job_name: 'node'
     static_configs:
       - targets:
           - '127.0.0.1:9100'
         labels:
-          host: 'www-prod-1'
+          host: '{{ prometheus_host_label }}'
