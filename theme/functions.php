@@ -45,11 +45,11 @@ add_filter(
 add_action("wp_enqueue_scripts", function () {
     // TODO: In JavaScript, detect whether the player style is needed and
     // late-load the style there instead of queueing it for every page.
-    wp_enqueue_style("smt-youtube", get_theme_file_uri("/youtube.css"));
+    wp_enqueue_style("smt-youtube", get_theme_file_uri("/youtube.min.css"));
 
     wp_enqueue_script(
         "smt-youtube",
-        get_theme_file_uri("/youtube.js"),
+        get_theme_file_uri("/youtube.min.js"),
         [],
         SMT_THEME_VERSION,
         true
