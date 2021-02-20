@@ -6,7 +6,7 @@
  * @package Smart Mouse Travel
  */
 
-DEFINE("SMT_THEME_VERSION", "0.9.0");
+DEFINE("SMT_THEME_VERSION", "0.9.1");
 
 /*
  * Defer loading of some selected styles. Empirically this saves about
@@ -43,10 +43,6 @@ add_filter(
  * by <https://www.labnol.org/internet/light-youtube-embeds/27941/>
  */
 add_action("wp_enqueue_scripts", function () {
-    // TODO: In JavaScript, detect whether the player style is needed and
-    // late-load the style there instead of queueing it for every page.
-    wp_enqueue_style("smt-youtube", get_theme_file_uri("/youtube.min.css"));
-
     wp_enqueue_script(
         "smt-youtube",
         get_theme_file_uri("/youtube.min.js"),

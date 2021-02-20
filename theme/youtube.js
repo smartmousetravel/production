@@ -19,8 +19,23 @@
         this.parentNode.replaceChild(iframe, this);
     }
 
+    function loadCSS() {
+        var head = document.getElementsByTagName("head")[0];
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        // TODO: Don't hard-code this link location
+        link.href = "/wp-content/themes/astra-smt/youtube.min.css";
+        link.media = "all";
+        head.appendChild(link);
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
         var players = document.getElementsByClassName("youtube-player");
+        if (players.length === 0) {
+            return;
+        }
+        loadCSS();
         for (var i = 0; i < players.length; i++) {
             var player = players[i];
             var div = document.createElement("div");
