@@ -1,7 +1,12 @@
-- name: restart smartmouse-web
-  systemd:
-    name: smartmouse-web
-    state: restarted
+- name: start smartmouse-web
+  shell:
+    cmd: docker-compose up -d
+    chdir: /config/docker
+
+- name: restart prometheus
+  shell:
+    cmd: docker-compose restart prometheus
+    chdir: /config/docker
 
 - name: reload nginx
   systemd:

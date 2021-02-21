@@ -110,7 +110,7 @@
     dest: '/config/docker/docker-compose.yml'
     owner: 'root'
     group: 'root'
-  notify: ['restart smartmouse-web']
+  notify: ['start smartmouse-web']
 
 - name: Install nginx
   apt:
@@ -144,17 +144,4 @@
   with_items:
     - 'prometheus.yml'
     - 'node.rules'
-
-- name: Install smartmouse-web systemd unit
-  copy:
-    src: 'smartmouse-web.service'
-    dest: '/etc/systemd/system/'
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
-  register: smartmouse_register_systemd_service
-
-- name: Reload systemd daemon
-  command: 'systemctl daemon-reload'
-  when: ((smartmouse_register_systemd_service) and
-         (smartmouse_register_systemd_service is changed))
+  notify: ['restart prometheus']
