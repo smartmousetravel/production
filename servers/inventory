@@ -8,6 +8,7 @@ all:
         - 'www.smartmousetravel.com'
       extra_tls_hosts:
         - 'smartmousetravel.com'
+        - 'www.smartmousetravel.com'
         - 'prometheus.smartmousetravel.com'
       has_separate_disks: true
       is_gce: true
