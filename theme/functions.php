@@ -6,7 +6,7 @@
  * @package Smart Mouse Travel
  */
 
-DEFINE("SMT_THEME_VERSION", "0.9.2");
+DEFINE("SMT_THEME_VERSION", "0.9.3");
 
 /*
  * Defer loading of some selected styles. Empirically this saves about
@@ -67,5 +67,22 @@ add_action("template_redirect", function () {
         Yoast\WP\SEO\Integrations\Front_End_Integration::class
     );
     remove_action("wpseo_head", [$front_end, "present_head"], -9999);
+});
+
+/*
+ * Display last-modified date instead of published date in Astra
+ * metadata. This is loosely based on the advice in the Astra docs[1]. That
+ * code is insane (it appends the empty string to the end of something three
+ * times?), so I cribbed markup from the parent theme source[2] to make sure
+ * we retain styling in future upgrades. Why this can't be fixed in CSS
+ * instead is completely beyond me.
+ *
+ * 1. <https://wpastra.com/docs/show-last-updated-not-published-date>
+ * 2. <https://github.com/brainstormforce/astra/blob/172c9b26e7/inc/blog/blog-config.php#L92>
+ */
+add_filter("astra_post_date", function () {
+    $format = apply_filters("astra_post_date_format", "");
+    $dt = esc_html(get_the_modified_date($format));
+    return "<span class='posted-on'><span class='published' itemprop='datePublished'>{$dt}</span></span>";
 });
 ?>
