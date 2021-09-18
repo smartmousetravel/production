@@ -6,7 +6,7 @@
  * @package Smart Mouse Travel
  */
 
-DEFINE("SMT_THEME_VERSION", "0.9.1");
+DEFINE("SMT_THEME_VERSION", "0.9.2");
 
 /*
  * Defer loading of some selected styles. Empirically this saves about
@@ -50,5 +50,22 @@ add_action("wp_enqueue_scripts", function () {
         SMT_THEME_VERSION,
         true
     );
+});
+
+/*
+ * Work around Yoast bug 17419[1], which is a regression that causes
+ * rel=canonical to be rendered multiple times, once by the web stories
+ * renderer and once by Yoast.
+ *
+ * 1. https://github.com/Yoast/wordpress-seo/issues/17419
+ */
+add_action("template_redirect", function () {
+    if (!is_singular("web-story")) {
+        return;
+    }
+    $front_end = YoastSEO()->classes->get(
+        Yoast\WP\SEO\Integrations\Front_End_Integration::class
+    );
+    remove_action("wpseo_head", [$front_end, "present_head"], -9999);
 });
 ?>
