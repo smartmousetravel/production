@@ -10,5 +10,6 @@ mysql_gid: '999'
 has_separate_disks: false
 disk_db_dir: '/db'
 disk_content_dir: '/wordpress'
+disk_listmonk_db_dir: '/listmonk'
 
 prometheus_host_label: '{{ ansible_hostname }}'

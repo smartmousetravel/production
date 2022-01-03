@@ -31,6 +31,25 @@ services:
       private:
         ipv4_address: 10.6.0.4
 
+  listmonk_db:
+    image: postgres:14
+    container_name: listmonk_db
+    environment:
+      - POSTGRES_PASSWORD={{ listmonk_db_password }}
+      - POSTGRES_USER=listmonk
+      - POSTGRES_DB=listmonk
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U listmonk']
+      interval: 10s
+      timeout: 5s
+      retries: 6
+    volumes:
+      - {{ disk_listmonk_db_dir }}/pg:/var/lib/postgresql/data
+    networks:
+      private:
+        ipv4_address: 10.6.0.5
+
   prometheus:
     image: prom/prometheus
     container_name: prometheus

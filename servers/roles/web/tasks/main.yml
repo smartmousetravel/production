@@ -48,6 +48,37 @@
     state: mounted
   when: is_gce and has_separate_disks
 
+- name: Make Listmonk DB mount point
+  file:
+    path: '{{ disk_listmonk_db_dir }}'
+    state: directory
+    owner: root
+    group: root
+    mode: 'u=rwx,g=rx,o='
+
+- name: Format Listmonk DB disk
+  filesystem:
+    fstype: ext4
+    dev: '/dev/disk/by-id/{{ disk_listmonk_db_id }}'
+  when: is_gce and has_separate_disks
+
+- name: Mount Listmonk DB disk
+  mount:
+    src: '/dev/disk/by-id/{{ disk_listmonk_db_id }}'
+    path: '{{ disk_listmonk_db_dir }}'
+    fstype: ext4
+    passno: '2'
+    state: mounted
+  when: is_gce and has_separate_disks
+
+- name: Make Listmonk DB directory
+  file:
+    path: '{{ disk_listmonk_db_dir }}/pg'
+    state: directory
+    owner: '999'
+    group: root
+    mode: 'u=rwx,g=,o='
+
 ##############################
 # Configure letsencrypt support
 ##############################
