@@ -50,6 +50,20 @@ services:
       private:
         ipv4_address: 10.6.0.5
 
+  listmonk:
+    image: listmonk/listmonk
+    container_name: listmonk
+    restart: unless-stopped
+    environment:
+      - TZ=Etc/UTC
+    depends_on:
+      - listmonk_db
+    volumes:
+      - /config/listmonk.toml:/listmonk/config.toml
+    networks:
+      private:
+        ipv4_address: 10.6.0.6
+
   prometheus:
     image: prom/prometheus
     container_name: prometheus

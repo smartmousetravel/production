@@ -176,3 +176,11 @@
     - 'prometheus.yml'
     - 'node.rules'
   notify: ['restart prometheus']
+
+- name: Install Listmonk config file
+  template:
+    src: 'listmonk.toml'
+    dest: '/config/'
+    owner: root
+    group: root
+    mode: 'u=rw,g=r,o='
