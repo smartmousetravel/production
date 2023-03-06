@@ -126,6 +126,15 @@
     mode: 'u=rw,g=r'
   notify: ['reload nginx']
 
+- name: Install nginx htpasswd file
+  copy:
+    src: 'htpasswd'
+    dest: '/etc/nginx/.htpasswd'
+    owner: 'root'
+    group: 'root'
+    mode: 'u=rw,g=r'
+  notify: ['reload nginx']
+
 - name: Create monitoring config directory
   file:
     path: '/config/prometheus'
