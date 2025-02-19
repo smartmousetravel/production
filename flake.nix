@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    terranix = {
+      url = "github:terranix/terranix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,6 +20,7 @@
       nixpkgs,
       nixpkgs-unstable,
       flake-utils,
+      terranix,
       treefmt-nix,
       ...
     }:
@@ -31,6 +36,12 @@
       in
       {
         formatter = treefmt.config.build.wrapper;
+
+        # Run 'nix run .#terraform-plan' etc for cloud asset deployment
+        apps = import ./nix/terraform-apps.nix {
+          inherit pkgs terranix;
+          terraform = pkgs-unstable.terraform;
+        };
 
         # Running 'nix develop' opens a development shell
         devShells = import ./shell.nix { inherit pkgs pkgs-unstable; };
