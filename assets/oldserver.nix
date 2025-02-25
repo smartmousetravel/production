@@ -71,5 +71,13 @@
         ];
       };
     };
+
+    google_dns_record_set.smartmouse_a_prod1 = {
+      name = "www-prod-1.smartmousetravel.com.";
+      managed_zone = "smartmouse";
+      type = "A";
+      ttl = 300;
+      rrdatas = [ (lib.tfRef "google_compute_address.www_old.address") ];
+    };
   };
 }
