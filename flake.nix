@@ -23,7 +23,7 @@
       terranix,
       treefmt-nix,
       ...
-    }:
+    }@inputs:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
@@ -46,5 +46,13 @@
         # Running 'nix develop' opens a development shell
         devShells = import ./shell.nix { inherit pkgs pkgs-unstable; };
       }
-    );
+    )
+    // {
+      nixosConfigurations = {
+        buckbeak = nixpkgs.lib.nixosSystem {
+          modules = [ ./nixos/hosts/buckbeak ];
+          specialArgs = { inherit inputs; };
+        };
+      };
+    };
 }

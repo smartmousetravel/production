@@ -32,7 +32,10 @@
       ];
 
       boot_disk = {
-        initialize_params.image = lib.tfRef "google_compute_image.nixos_2411.id";
+        initialize_params = {
+          size = 30;
+          image = lib.tfRef "google_compute_image.nixos_2411.id";
+        };
       };
 
       attached_disk = [
@@ -56,10 +59,6 @@
       service_account = {
         email = lib.tfRef "google_service_account.buckbeak.email";
         scopes = [ "cloud-platform" ];
-      };
-
-      metadata = {
-        enable-oslogin = "TRUE";
       };
     };
 

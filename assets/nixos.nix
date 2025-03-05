@@ -2,7 +2,7 @@
 {
   data = {
     google_storage_bucket_object.nixos_2411 = {
-      name = "nixos-2411-vfivw1biz8j9qivjjhymajwq085nfdpb.raw.tar.gz";
+      name = "nixos-2411-y7gkh9agpg7i2yx7m0kqs1jlb3sj6x1a.tar.gz";
       bucket = "smartmouse-images";
     };
   };
