@@ -44,7 +44,7 @@
         };
 
         # Running 'nix develop' opens a development shell
-        devShells = import ./shell.nix { inherit pkgs pkgs-unstable; };
+        devShells = import ./nix/shell.nix { inherit pkgs pkgs-unstable; };
       }
     )
     // {
