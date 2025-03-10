@@ -36,4 +36,9 @@
       PasswordAuthentication = false;
     };
   };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "lucas@smartmousetravel.com";
+  };
 }
