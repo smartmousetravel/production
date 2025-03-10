@@ -6,6 +6,12 @@
       display_name = "buckbeak instance service account";
     };
 
+    google_project_iam_member.buckbeak_acme_dns = {
+      project = lib.tfRef "var.gcp_project";
+      role = lib.tfRef "google_project_iam_custom_role.acme_dns.name";
+      member = "serviceAccount:\${google_service_account.buckbeak.email}";
+    };
+
     google_compute_disk = {
       buckbeak_wp_content = {
         name = "buckbeak-wp-content";
