@@ -4,14 +4,38 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    systems.url = "github:nix-systems/default";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+    pyproject-nix = {
+      url = "github:pyproject-nix/pyproject.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    uv2nix = {
+      url = "github:pyproject-nix/uv2nix";
+      inputs.pyproject-nix.follows = "pyproject-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    pyproject-build-systems = {
+      url = "github:pyproject-nix/build-system-pkgs";
+      inputs.pyproject-nix.follows = "pyproject-nix";
+      inputs.uv2nix.follows = "uv2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     terranix = {
       url = "github:terranix/terranix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
     };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
   };
 
@@ -20,8 +44,11 @@
       nixpkgs,
       nixpkgs-unstable,
       flake-utils,
+      pyproject-build-systems,
+      pyproject-nix,
       terranix,
       treefmt-nix,
+      uv2nix,
       ...
     }@inputs:
     flake-utils.lib.eachDefaultSystem (
@@ -44,7 +71,15 @@
         };
 
         # Running 'nix develop' opens a development shell
-        devShells = import ./nix/shell.nix { inherit pkgs pkgs-unstable; };
+        devShells = import ./nix/shell.nix {
+          inherit
+            pkgs
+            pkgs-unstable
+            pyproject-build-systems
+            pyproject-nix
+            uv2nix
+            ;
+        };
       }
     )
     // {
