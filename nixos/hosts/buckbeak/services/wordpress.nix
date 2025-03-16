@@ -1,38 +1,43 @@
 { pkgs, ... }:
 let
   site = "buckbeak.smartmousetravel.com";
-  fetchTheme =
-    {
-      name,
-      version,
-      hash,
-    }:
-    pkgs.stdenv.mkDerivation rec {
-      inherit name version hash;
-      src = pkgs.fetchzip {
-        inherit name version hash;
-        url = "https://downloads.wordpress.org/theme/${name}.${version}.zip";
-      };
-      installPhase = "mkdir -p $out; cp -R * $out/";
-    };
+  assets = builtins.fromJSON (builtins.readFile ./wordpress-assets.json);
 in
 {
   services.wordpress = {
     webserver = "nginx";
 
-    sites."${site}" = {
-      uploadsDir = "/wp/uploads";
-      plugins = { };
-      themes = {
-        astra = fetchTheme {
-          name = "astra";
-          version = "4.9.0";
-          hash = "sha256-m146BCsWRXkfH9gi36burYDpEdzwWgMRsu1v6n1yGsA=";
-        };
+    sites."${site}" =
+      let
+        fetchAsset =
+          name:
+          {
+            version,
+            url,
+            hash,
+          }:
+          pkgs.stdenv.mkDerivation {
+            inherit name version hash;
+            src = pkgs.fetchurl {
+              inherit
+                name
+                version
+                url
+                hash
+                ;
+            };
+            buildInputs = [ pkgs.unzip ];
+            dontUnpack = true;
+            installPhase = "mkdir -p $out; unzip $src -d $out/";
+          };
+        inherit (pkgs.lib.attrsets) mapAttrs;
+      in
+      {
+        uploadsDir = "/wp/uploads";
+        plugins = mapAttrs fetchAsset assets.plugins;
+        themes = mapAttrs fetchAsset assets.themes;
+        database.socket = "/run/mysqld/mysqld.sock";
       };
-
-      database.socket = "/run/mysqld/mysqld.sock";
-    };
   };
 
   services.nginx.virtualHosts."${site}" = {

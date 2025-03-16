@@ -1,0 +1,56 @@
+{
+  "plugins": {
+    "astra-widgets": {
+      "version": "1.2.16",
+      "url": "https://downloads.wordpress.org/plugin/astra-widgets.1.2.16.zip",
+      "hash": "sha256-bF4k0ZptGE8LX6WjZzfswPx8e1DAu+4faWK1qDbsHo4="
+    },
+    "force-regenerate-thumbnails": {
+      "version": "2.2.1",
+      "url": "https://downloads.wordpress.org/plugin/force-regenerate-thumbnails.2.2.1.zip",
+      "hash": "sha256-6wzMYGbrlThC2FYPdt158iglBDCVZbfMMCRlAwTybTs="
+    },
+    "gutenberg": {
+      "version": "20.4.0",
+      "url": "https://downloads.wordpress.org/plugin/gutenberg.20.4.0.zip",
+      "hash": "sha256-O50j2NbamL0z9fY+q9E4vWg1wQTNNuSpTtjBE1Z5y0M="
+    },
+    "header-footer-code-manager": {
+      "version": "1.1.39",
+      "url": "https://downloads.wordpress.org/plugin/header-footer-code-manager.1.1.39.zip",
+      "hash": "sha256-EblQfhQw7rtSxKS/SsJD9ziwQ5Pggu9ByS+nkroG8PY="
+    },
+    "mediavine-control-panel": {
+      "version": "2.10.6",
+      "url": "https://downloads.wordpress.org/plugin/mediavine-control-panel.zip",
+      "hash": "sha256-rjwyOvZafXJMWzEHzduO+hQQYmp/XoiAjsdavACP6y0="
+    },
+    "mediavine-create": {
+      "version": "1.9.11",
+      "url": "https://downloads.wordpress.org/plugin/mediavine-create.zip",
+      "hash": "sha256-r95Kaxqavjc7EpM8kT3vBQh975M4w0lTt2txUiQEGms="
+    },
+    "pdf-embedder": {
+      "version": "4.9.0",
+      "url": "https://downloads.wordpress.org/plugin/pdf-embedder.4.9.0.zip",
+      "hash": "sha256-12DjEPN6nfDHkJrO/53YEJAaBLF/EOYWZly3bMCrHzk="
+    },
+    "web-stories": {
+      "version": "1.39.0",
+      "url": "https://downloads.wordpress.org/plugin/web-stories.1.39.0.zip",
+      "hash": "sha256-1arEKIdHioGWv5L53jF2DJjaOeD2cg+kej2C9xI4PPE="
+    },
+    "wordpress-seo": {
+      "version": "24.6",
+      "url": "https://downloads.wordpress.org/plugin/wordpress-seo.24.6.zip",
+      "hash": "sha256-ZANrEalYwo4KE20sIb1iNsJpGXwrSmgLpDVZ9QIfRlE="
+    }
+  },
+  "themes": {
+    "astra": {
+      "version": "4.9.0",
+      "url": "https://downloads.wordpress.org/theme/astra.4.9.0.zip",
+      "hash": "sha256-c704el3/WBmhU3lkW9z08J0vyN9o7pP3sdb/vaKpIAo="
+    }
+  }
+}
