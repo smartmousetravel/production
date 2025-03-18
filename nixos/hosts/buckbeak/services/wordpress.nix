@@ -26,9 +26,14 @@ in
                 hash
                 ;
             };
-            buildInputs = [ pkgs.unzip ];
+            buildInputs = [ pkgs.libarchive ];
             dontUnpack = true;
-            installPhase = "mkdir -p $out; unzip $src -d $out/";
+            installPhase = ''
+              runHook preInstall
+              mkdir -p $out
+              bsdtar --strip-components=1 -xf $src -C $out/
+              runHook postInstall
+            '';
           };
         inherit (pkgs.lib.attrsets) mapAttrs;
       in
