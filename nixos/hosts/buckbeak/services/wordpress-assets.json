@@ -41,9 +41,9 @@
       "hash": "sha256-1arEKIdHioGWv5L53jF2DJjaOeD2cg+kej2C9xI4PPE="
     },
     "wordpress-seo": {
-      "version": "24.6",
-      "url": "https://downloads.wordpress.org/plugin/wordpress-seo.24.6.zip",
-      "hash": "sha256-ZANrEalYwo4KE20sIb1iNsJpGXwrSmgLpDVZ9QIfRlE="
+      "version": "24.7",
+      "url": "https://downloads.wordpress.org/plugin/wordpress-seo.24.7.zip",
+      "hash": "sha256-SDScTdeT+eTP/9iVuzXLxPeXfjG3AnSOLvllS5NYpp4="
     }
   },
   "themes": {
