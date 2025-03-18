@@ -1,6 +1,1 @@
 /.direnv
-/bazel-bin
-/bazel-out
-/bazel-smartmouse-production
-/bazel-testlogs
-/node_modules
