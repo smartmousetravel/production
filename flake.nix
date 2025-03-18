@@ -41,6 +41,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       nixpkgs-unstable,
       flake-utils,
@@ -62,6 +63,8 @@
         treefmt = treefmt-nix.lib.evalModule pkgs ./nix/treefmt.nix;
       in
       {
+        packages = import ./pkgs { inherit pkgs; };
+
         formatter = treefmt.config.build.wrapper;
 
         # Run 'nix run .#terraform-plan' etc for cloud asset deployment
@@ -86,7 +89,10 @@
       nixosConfigurations = {
         buckbeak = nixpkgs.lib.nixosSystem {
           modules = [ ./nixos/hosts/buckbeak ];
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+            pkgs-smt = self.outputs.packages.x86_64-linux;
+          };
         };
       };
     };

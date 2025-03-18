@@ -21,7 +21,9 @@
     ".prettierignore"
     "*.gitignore"
     "*.lock.hcl"
+    "pkgs/astra-smt/COPYING"
+    "pkgs/astra-smt/assets/play.png"
+    "pkgs/astra-smt/functions.php"
     "servers/*"
-    "theme/*"
   ];
 }

@@ -6,7 +6,7 @@
  * @package Smart Mouse Travel
  */
 
-DEFINE("SMT_THEME_VERSION", "0.9.3");
+DEFINE("SMT_THEME_VERSION", "0.9.4");
 
 /*
  * Defer loading of some selected styles. Empirically this saves about

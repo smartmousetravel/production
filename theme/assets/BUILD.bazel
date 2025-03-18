@@ -1,7 +1,0 @@
-load("@rules_pkg//:pkg.bzl", "pkg_tar")
-
-filegroup(
-    name = "assets",
-    srcs = ["play.png"],
-    visibility = ["//visibility:public"],
-)

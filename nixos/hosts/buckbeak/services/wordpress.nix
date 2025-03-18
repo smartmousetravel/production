@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-smt, ... }:
 let
   site = "buckbeak.smartmousetravel.com";
   assets = builtins.fromJSON (builtins.readFile ./wordpress-assets.json);
@@ -35,7 +35,9 @@ in
       {
         uploadsDir = "/wp/uploads";
         plugins = mapAttrs fetchAsset assets.plugins;
-        themes = mapAttrs fetchAsset assets.themes;
+        themes = {
+          inherit (pkgs-smt) astra-smt;
+        } // (mapAttrs fetchAsset assets.themes);
         database.socket = "/run/mysqld/mysqld.sock";
       };
   };

@@ -12,7 +12,7 @@
         var iframe = document.createElement("iframe");
         iframe.setAttribute(
             "src",
-            "https://www.youtube.com/embed/" + this.dataset.id
+            "https://www.youtube.com/embed/" + this.dataset.id,
         );
         iframe.setAttribute("frameborder", "0");
         iframe.setAttribute("allowfullscreen", "1");
@@ -25,7 +25,7 @@
         link.rel = "stylesheet";
         link.type = "text/css";
         // TODO: Don't hard-code this link location
-        link.href = "/wp-content/themes/astra-smt/youtube.min.css";
+        link.href = "/wp-content/themes/astra-smt/youtube.css";
         link.media = "all";
         head.appendChild(link);
     }
