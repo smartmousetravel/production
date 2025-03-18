@@ -2,6 +2,7 @@
 {
   projectRootFile = "flake.nix";
   programs = {
+    black.enable = true;
     buildifier = {
       enable = true;
       includes = [
@@ -15,15 +16,20 @@
     terraform.enable = true;
   };
 
+  settings.formatter = {
+    black.options = [ "--line-length=98" ];
+  };
+
   settings.global.excludes = [
     ".editorconfig"
     ".envrc"
     ".prettierignore"
     "*.gitignore"
     "*.lock.hcl"
+    "*.php"
+    "*.png"
+    "*.toml"
     "pkgs/astra-smt/COPYING"
-    "pkgs/astra-smt/assets/play.png"
-    "pkgs/astra-smt/functions.php"
     "servers/*"
   ];
 }
