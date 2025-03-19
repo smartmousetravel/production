@@ -47,9 +47,31 @@ in
       };
   };
 
-  services.nginx.virtualHosts."${site}" = {
-    enableACME = true;
-    forceSSL = true;
+  services.nginx = {
+    clientMaxBodySize = "20m";
+    mapHashBucketSize = 128;
+    commonHttpConfig = ''
+      map $request_uri $new_uri {
+        include ${./nginx.map};
+      }
+    '';
+
+    virtualHosts."${site}" = {
+      enableACME = true;
+      forceSSL = true;
+
+      # Use the redirects loaded from nginx.map
+      extraConfig = ''
+        if ($new_uri) {
+          return 301 $new_uri;
+        }
+      '';
+
+      # Redirect /yyyy/mm/dd/WHATEVER/ to /WHATEVER/
+      locations."/".extraConfig = ''
+        rewrite ^/[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9]/([^/]+)/$ /$1/ permanent;
+      '';
+    };
   };
 
   # TODO: Why does setting this in security.acme.defaults fail?

@@ -18,6 +18,7 @@
     ".prettierignore"
     "*.gitignore"
     "*.lock.hcl"
+    "*.map"
     "*.php"
     "*.png"
     "*.toml"
