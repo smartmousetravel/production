@@ -3,14 +3,6 @@
   projectRootFile = "flake.nix";
   programs = {
     black.enable = true;
-    buildifier = {
-      enable = true;
-      includes = [
-        "*.bazel"
-        "*.bzl"
-        "WORKSPACE"
-      ];
-    };
     nixfmt.enable = true;
     prettier.enable = true;
     terraform.enable = true;
