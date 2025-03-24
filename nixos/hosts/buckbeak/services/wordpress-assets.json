@@ -11,9 +11,9 @@
       "hash": "sha256-6wzMYGbrlThC2FYPdt158iglBDCVZbfMMCRlAwTybTs="
     },
     "gutenberg": {
-      "version": "20.4.0",
-      "url": "https://downloads.wordpress.org/plugin/gutenberg.20.4.0.zip",
-      "hash": "sha256-O50j2NbamL0z9fY+q9E4vWg1wQTNNuSpTtjBE1Z5y0M="
+      "version": "20.5.0",
+      "url": "https://downloads.wordpress.org/plugin/gutenberg.20.5.0.zip",
+      "hash": "sha256-LsEJD6WLF6D8bhFH8Hl2YQwmtwH0MciZ7lKeC9orvlA="
     },
     "header-footer-code-manager": {
       "version": "1.1.39",
