@@ -11,9 +11,9 @@
       "hash": "sha256-6wzMYGbrlThC2FYPdt158iglBDCVZbfMMCRlAwTybTs="
     },
     "gutenberg": {
-      "version": "20.5.0",
-      "url": "https://downloads.wordpress.org/plugin/gutenberg.20.5.0.zip",
-      "hash": "sha256-LsEJD6WLF6D8bhFH8Hl2YQwmtwH0MciZ7lKeC9orvlA="
+      "version": "20.6.0",
+      "url": "https://downloads.wordpress.org/plugin/gutenberg.20.6.0.zip",
+      "hash": "sha256-ORcjDYBNAQatRtj6po8AaKktW0vy1aRAK+gOvZfFfEQ="
     },
     "header-footer-code-manager": {
       "version": "1.1.39",
@@ -36,21 +36,21 @@
       "hash": "sha256-12DjEPN6nfDHkJrO/53YEJAaBLF/EOYWZly3bMCrHzk="
     },
     "web-stories": {
-      "version": "1.39.0",
-      "url": "https://downloads.wordpress.org/plugin/web-stories.1.39.0.zip",
-      "hash": "sha256-1arEKIdHioGWv5L53jF2DJjaOeD2cg+kej2C9xI4PPE="
+      "version": "1.40.0",
+      "url": "https://downloads.wordpress.org/plugin/web-stories.1.40.0.zip",
+      "hash": "sha256-QMT6jR1FDkDs17nRFJZwaRy27V738VEtmCYNQ+qHw3o="
     },
     "wordpress-seo": {
-      "version": "24.7",
-      "url": "https://downloads.wordpress.org/plugin/wordpress-seo.24.7.zip",
-      "hash": "sha256-SDScTdeT+eTP/9iVuzXLxPeXfjG3AnSOLvllS5NYpp4="
+      "version": "24.8.1",
+      "url": "https://downloads.wordpress.org/plugin/wordpress-seo.24.8.1.zip",
+      "hash": "sha256-Xlgq6vhROvNx7JDZFlXnsMlUXwGbUZuF9O3pn1n89gk="
     }
   },
   "themes": {
     "astra": {
-      "version": "4.9.0",
-      "url": "https://downloads.wordpress.org/theme/astra.4.9.0.zip",
-      "hash": "sha256-c704el3/WBmhU3lkW9z08J0vyN9o7pP3sdb/vaKpIAo="
+      "version": "4.9.1",
+      "url": "https://downloads.wordpress.org/theme/astra.4.9.1.zip",
+      "hash": "sha256-RVX1h1vJNVnS6+YJAMKlhsvACMAz2vMfnbXvbjufsYM="
     }
   }
 }
