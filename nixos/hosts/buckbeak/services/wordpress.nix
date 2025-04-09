@@ -1,6 +1,6 @@
 { pkgs, pkgs-smt, ... }:
 let
-  site = "buckbeak.smartmousetravel.com";
+  site = "smartmousetravel.com";
   assets = builtins.fromJSON (builtins.readFile ./wordpress-assets.json);
 in
 {
