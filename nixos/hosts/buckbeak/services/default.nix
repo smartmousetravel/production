@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [ ./wordpress.nix ];
+  imports = [
+    ./monitoring.nix
+    ./wordpress.nix
+  ];
 
   networking.firewall.allowedTCPPorts = [
     80
