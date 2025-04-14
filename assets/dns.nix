@@ -40,14 +40,14 @@
         managed_zone = zone;
         type = "A";
         ttl = 300;
-        rrdatas = [ (lib.tfRef "google_compute_address.www_old.address") ];
+        rrdatas = [ (lib.tfRef "google_compute_address.buckbeak.address") ];
       };
       google_dns_record_set.smartmouse_a_www = {
         name = "www.${domain}";
         managed_zone = zone;
         type = "A";
         ttl = 300;
-        rrdatas = [ (lib.tfRef "google_compute_address.www_old.address") ];
+        rrdatas = [ (lib.tfRef "google_compute_address.buckbeak.address") ];
       };
 
       google_dns_record_set.smartmouse_txt_spf = {
