@@ -1,9 +1,0 @@
-[Unit]
-Description=Runs letsencrypt cert generator
-Wants=gencerts.timer
-
-[Service]
-ExecStart=/usr/local/sbin/gencerts
-
-[Install]
-WantedBy=multi-user.target

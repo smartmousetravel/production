@@ -1,2 +1,0 @@
-- name: hostname
-  shell: '/bin/hostname -F /etc/hostname'
