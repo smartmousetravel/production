@@ -3,7 +3,7 @@
     "astra-widgets": {
       "version": "1.2.16",
       "url": "https://downloads.wordpress.org/plugin/astra-widgets.1.2.16.zip",
-      "hash": "sha256-bF4k0ZptGE8LX6WjZzfswPx8e1DAu+4faWK1qDbsHo4="
+      "hash": "sha256-eKRiLUyR6aJPOfFcKL2SukVT9MrPBtoZfu1DUd5efQk="
     },
     "force-regenerate-thumbnails": {
       "version": "2.2.1",
@@ -11,19 +11,19 @@
       "hash": "sha256-6wzMYGbrlThC2FYPdt158iglBDCVZbfMMCRlAwTybTs="
     },
     "gutenberg": {
-      "version": "20.6.0",
-      "url": "https://downloads.wordpress.org/plugin/gutenberg.20.6.0.zip",
-      "hash": "sha256-ORcjDYBNAQatRtj6po8AaKktW0vy1aRAK+gOvZfFfEQ="
+      "version": "20.7.0",
+      "url": "https://downloads.wordpress.org/plugin/gutenberg.20.7.0.zip",
+      "hash": "sha256-/VR6rzWn/LNtDs1h5wkGkY6cKwGzXQSQqP+sfTuPOuw="
     },
     "header-footer-code-manager": {
-      "version": "1.1.39",
-      "url": "https://downloads.wordpress.org/plugin/header-footer-code-manager.1.1.39.zip",
-      "hash": "sha256-EblQfhQw7rtSxKS/SsJD9ziwQ5Pggu9ByS+nkroG8PY="
+      "version": "1.1.40",
+      "url": "https://downloads.wordpress.org/plugin/header-footer-code-manager.1.1.40.zip",
+      "hash": "sha256-a7EtGVWNNgKg66RvzKZV018JUCTuUzv0ylaVyHNBV5w="
     },
     "mediavine-control-panel": {
-      "version": "2.10.6",
+      "version": "2.10.8",
       "url": "https://downloads.wordpress.org/plugin/mediavine-control-panel.zip",
-      "hash": "sha256-c59WWcSdW4WqUDdApxUgVZIje0vMVBm6j7kMN5bvRZw="
+      "hash": "sha256-o3B0lKnVgqhUJkFthnnGBlYVxcffmjvJIpzILH8kEiY="
     },
     "mediavine-create": {
       "version": "1.9.11",
@@ -31,26 +31,26 @@
       "hash": "sha256-r95Kaxqavjc7EpM8kT3vBQh975M4w0lTt2txUiQEGms="
     },
     "pdf-embedder": {
-      "version": "4.9.0",
-      "url": "https://downloads.wordpress.org/plugin/pdf-embedder.4.9.0.zip",
-      "hash": "sha256-12DjEPN6nfDHkJrO/53YEJAaBLF/EOYWZly3bMCrHzk="
+      "version": "4.9.2",
+      "url": "https://downloads.wordpress.org/plugin/pdf-embedder.4.9.2.zip",
+      "hash": "sha256-r3qOjAH4KzNfwSIIsy9Tn1ziU0wegQWcwD9iy8QnMuw="
     },
     "web-stories": {
-      "version": "1.40.0",
-      "url": "https://downloads.wordpress.org/plugin/web-stories.1.40.0.zip",
-      "hash": "sha256-QMT6jR1FDkDs17nRFJZwaRy27V738VEtmCYNQ+qHw3o="
+      "version": "1.41.0",
+      "url": "https://downloads.wordpress.org/plugin/web-stories.1.41.0.zip",
+      "hash": "sha256-jePOMIQ5n0C4kLMbyLNP6UUzPEX/Dvo6qsG2UnRxvV8="
     },
     "wordpress-seo": {
-      "version": "24.8.1",
-      "url": "https://downloads.wordpress.org/plugin/wordpress-seo.24.8.1.zip",
-      "hash": "sha256-Xlgq6vhROvNx7JDZFlXnsMlUXwGbUZuF9O3pn1n89gk="
+      "version": "25.0",
+      "url": "https://downloads.wordpress.org/plugin/wordpress-seo.25.0.zip",
+      "hash": "sha256-hqXvsJxXrcn/9MYOQiy7nK0aihhpBw+1zPjRrB0k30c="
     }
   },
   "themes": {
     "astra": {
-      "version": "4.9.1",
-      "url": "https://downloads.wordpress.org/theme/astra.4.9.1.zip",
-      "hash": "sha256-RVX1h1vJNVnS6+YJAMKlhsvACMAz2vMfnbXvbjufsYM="
+      "version": "4.11.0",
+      "url": "https://downloads.wordpress.org/theme/astra.4.11.0.zip",
+      "hash": "sha256-rodnM3A6tdRiUd4PKm+NKLFkYJ4GdQOCgTt3VqnH/aw="
     }
   }
 }
