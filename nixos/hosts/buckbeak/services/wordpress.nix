@@ -42,7 +42,8 @@ in
         plugins = mapAttrs fetchAsset assets.plugins;
         themes = {
           inherit (pkgs-smt) astra-smt;
-        } // (mapAttrs fetchAsset assets.themes);
+        }
+        // (mapAttrs fetchAsset assets.themes);
         database.socket = "/run/mysqld/mysqld.sock";
       };
   };
