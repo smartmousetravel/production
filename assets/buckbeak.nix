@@ -40,7 +40,7 @@
       boot_disk = {
         initialize_params = {
           size = 30;
-          image = lib.tfRef "google_compute_image.nixos_2411.id";
+          image = lib.tfRef "google_compute_image.nixos_2511.id";
         };
       };
 
