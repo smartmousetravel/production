@@ -37,6 +37,10 @@
     };
   };
 
+  # Work around SSH to GCE instances breaking starting with NixOS 25.11, something
+  # to do with Google's PAM modules: https://discourse.nixos.org/t/72687
+  security.pam.services.sshd.googleOsLoginAccountVerification = lib.mkForce false;
+
   security.acme = {
     acceptTerms = true;
     defaults.email = "lucas@smartmousetravel.com";

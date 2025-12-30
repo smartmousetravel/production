@@ -5,6 +5,11 @@
       name = "nixos-2411-y7gkh9agpg7i2yx7m0kqs1jlb3sj6x1a.tar.gz";
       bucket = "smartmouse-images";
     };
+
+    google_storage_bucket_object.nixos_2511 = {
+      name = "nixos-2511-7j8dgq20r8wi032fcbrs292q8djpmdki.tar.gz";
+      bucket = "smartmouse-images";
+    };
   };
 
   resource = {
@@ -12,6 +17,12 @@
       name = "nixos-2411";
       family = "nixos-2411";
       raw_disk.source = lib.tfRef "data.google_storage_bucket_object.nixos_2411.self_link";
+    };
+
+    google_compute_image.nixos_2511 = {
+      name = "nixos-2511";
+      family = "nixos-2511";
+      raw_disk.source = lib.tfRef "data.google_storage_bucket_object.nixos_2511.self_link";
     };
   };
 }
