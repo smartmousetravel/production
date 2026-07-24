@@ -4,8 +4,12 @@
   programs = {
     black.enable = true;
     nixfmt.enable = true;
-    prettier.enable = true;
     terraform.enable = true;
+
+    prettier = {
+      enable = true;
+      package = pkgs.prettier;
+    };
   };
 
   settings.formatter = {
