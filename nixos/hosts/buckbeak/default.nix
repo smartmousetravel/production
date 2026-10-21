@@ -11,6 +11,7 @@
   ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.overlays = [ (import ../../../pkgs/php-overlay.nix) ];
 
   fileSystems."/db" = {
     device = "/dev/disk/by-id/google-wp-db";
