@@ -13,17 +13,6 @@
       url = "github:pyproject-nix/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    uv2nix = {
-      url = "github:pyproject-nix/uv2nix";
-      inputs.pyproject-nix.follows = "pyproject-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    pyproject-build-systems = {
-      url = "github:pyproject-nix/build-system-pkgs";
-      inputs.pyproject-nix.follows = "pyproject-nix";
-      inputs.uv2nix.follows = "uv2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     terranix = {
       url = "github:terranix/terranix";
       inputs = {
@@ -45,11 +34,9 @@
       nixpkgs,
       nixpkgs-unstable,
       flake-utils,
-      pyproject-build-systems,
       pyproject-nix,
       terranix,
       treefmt-nix,
-      uv2nix,
       ...
     }@inputs:
     flake-utils.lib.eachDefaultSystem (
@@ -63,7 +50,7 @@
         treefmt = treefmt-nix.lib.evalModule pkgs ./nix/treefmt.nix;
       in
       {
-        packages = import ./pkgs { inherit pkgs; };
+        packages = import ./pkgs { inherit pkgs pyproject-nix; };
 
         formatter = treefmt.config.build.wrapper;
 
@@ -75,13 +62,7 @@
 
         # Running 'nix develop' opens a development shell
         devShells = import ./nix/shell.nix {
-          inherit
-            pkgs
-            pkgs-unstable
-            pyproject-build-systems
-            pyproject-nix
-            uv2nix
-            ;
+          inherit pkgs pkgs-unstable;
         };
       }
     )

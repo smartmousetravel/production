@@ -1,11 +1,14 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "wp-plugin-info"
 version = "0.1.0"
-description = ""
+description = "Fetch WordPress plugin and theme metadata and SHA-256 hashes"
 authors = [
     { name = "Lucas", email = "lucas@smartmousetravel.com" }
 ]
-readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "requests>=2.32.3",
